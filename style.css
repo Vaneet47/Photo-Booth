@@ -1,0 +1,111 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.video-cont {
+  height: calc(100vh - 3.8rem);
+  width: 100vw;
+  background-color: #222222;
+  /* overflow: hidden; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+video {
+  height: 100%;
+  width: 100%;
+  /* border-radius: 5px; */
+}
+
+.actions-cont {
+  height: 3.8rem;
+  width: 100vw;
+  background-color: #f1f1f1;
+  /* position: absolute;
+  left: calc((100vw - 15rem) / 2);
+  bottom: 1rem; */
+  display: flex;
+  /* flex-direction: column; */
+  justify-content: space-between;
+  align-items: center;
+  /* border-radius: 5px; */
+}
+
+.actions-cont > * {
+  width: 7rem;
+  border-radius: 50%;
+  height: 100%;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  /* background-color: #373f4c; */
+  /* background-color: #4c586d; */
+  /* border: 1px solid #4c586d;
+  display: flex;
+  align-items: center;
+  justify-content: center; */
+}
+
+.record-btn {
+  background-color: red;
+  height: 3.5rem;
+  width: 3.5rem;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.capture-btn {
+  background-color: rgb(74, 80, 198);
+  height: 3.5rem;
+  width: 3.5rem;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.scale-record {
+  animation: scale-record;
+  animation-iteration-count: infinite;
+  animation-duration: 0.8s;
+  /* animation-timing-function: ease-in-out; */
+  transition: ease-in-out;
+}
+
+@keyframes scale-record {
+  0% {
+    transform: scale(0.8);
+  }
+  100% {
+    transform: scale(1.1);
+  }
+}
+@keyframes scale-capture {
+  0% {
+    transform: scale(0.8);
+  }
+  100% {
+    transform: scale(1.1);
+  }
+}
+
+.scale-capture {
+  animation: scale-capture;
+  animation-iteration-count: 1;
+  animation-duration: 0.5s;
+}
+
+.gallery-btn {
+  border: none;
+  padding: 3px 15px;
+  background-color: #d1d1d1;
+  border-radius: 5px;
+}
+
+.timer {
+  display: none;
+}

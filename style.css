@@ -109,3 +109,51 @@ video {
 .timer {
   display: none;
 }
+
+.filter-cont {
+  z-index: 2;
+  position: absolute;
+  top: calc((100vh - 80vh - 3.8rem) / 2);
+  left: 1rem;
+  /* background-color: aqua; */
+  height: 80vh;
+  width: 10rem;
+}
+
+.filter {
+  height: 18vh;
+  width: 100%;
+  background-image: url('https://picsum.photos/seed/picsum/200/300');
+  margin-bottom: 2.7vh;
+  border-radius: 5px;
+  background-position: center;
+  background-size: 100% 100%;
+  border: 1px solid black;
+  background-repeat: no-repeat;
+  background-blend-mode: color-burn;
+}
+
+.orange {
+  background-color: #ffa50052;
+}
+
+.brown {
+  background-color: #a52a2a59;
+}
+
+.pink {
+  background-color: #ffc0cb57;
+}
+
+.transparent {
+  background-color: transparent;
+}
+
+.filter-layer {
+  height: calc(100vh - 3.8rem);
+  width: 100vw;
+  position: absolute;
+  top: 0;
+  left: 0;
+  /* background-color: #ffa50052; */
+}

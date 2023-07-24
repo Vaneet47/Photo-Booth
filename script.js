@@ -11,6 +11,8 @@ let chunks = []; // Media data in chunks
 
 let recordFlag = false;
 
+let transparentColor = 'transparent';
+
 let constraints = {
   video: true,
   audio: true,
@@ -62,6 +64,26 @@ recordBtn.addEventListener('click', (e) => {
   }
 });
 
+captureBtn.addEventListener('click', (e) => {
+  let canvas = document.createElement('canvas');
+
+  canvas.width = video.videoWidth;
+  canvas.height = video.videoHeight;
+
+  let tool = canvas.getContext('2d');
+  tool.drawImage(video, 0, 0, canvas.width, canvas.height);
+  // filtering
+  tool.fillStyle = transparentColor;
+  tool.fillRect(0, 0, canvas.width, canvas.height);
+
+  let imageURL = canvas.toDataURL();
+
+  let a = document.createElement('a');
+  a.href = imageURL;
+  a.download = 'image.jpg';
+  a.click();
+});
+
 let timerID;
 let counter = 0;
 let timer = document.querySelector('.timer');
@@ -92,3 +114,16 @@ function stopTimer() {
   timer.innerText = '00:00:00';
   timer.style.display = 'none';
 }
+
+let allFilters = document.querySelectorAll('.filter');
+let filterLayer = document.querySelector('.filter-layer');
+allFilters.forEach((filterElement) => {
+  filterElement.addEventListener('click', (e) => {
+    // filterElement.style.backgroundColor =  SET
+    // GET
+    transparentColor =
+      getComputedStyle(filterElement).getPropertyValue('background-color');
+
+    filterLayer.style.backgroundColor = transparentColor;
+  });
+});

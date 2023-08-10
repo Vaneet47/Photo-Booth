@@ -26,7 +26,6 @@ navigator.mediaDevices.getUserMedia(constraints).then((stream) => {
 
   recorder.addEventListener('start', (e) => {
     chunks = [];
-    console.log('start');
   });
 
   recorder.addEventListener('dataavailable', (e) => {
@@ -37,12 +36,18 @@ navigator.mediaDevices.getUserMedia(constraints).then((stream) => {
     // convert media chunks to video
     let blob = new Blob(chunks, { type: 'video/mp4' });
 
-    let videoURL = URL.createObjectURL(blob);
+    if (db) {
+      let uid = new ShortUniqueId();
+      // console.log('uid', uid());
+      let dbTransaction = db.transaction('video', 'readwrite');
+      let videoStore = dbTransaction.objectStore('video');
+      let videoEntry = {
+        id: `vid-${uid()}`,
+        blobData: blob,
+      };
 
-    let a = document.createElement('a');
-    a.href = videoURL;
-    a.download = 'video.mp4';
-    a.click();
+      videoStore.add(videoEntry);
+    }
   });
 });
 
@@ -65,6 +70,7 @@ recordBtn.addEventListener('click', (e) => {
 });
 
 captureBtn.addEventListener('click', (e) => {
+  captureBtn.classList.add('scale-capture');
   let canvas = document.createElement('canvas');
 
   canvas.width = video.videoWidth;
@@ -78,10 +84,21 @@ captureBtn.addEventListener('click', (e) => {
 
   let imageURL = canvas.toDataURL();
 
-  let a = document.createElement('a');
-  a.href = imageURL;
-  a.download = 'image.jpg';
-  a.click();
+  if (db) {
+    let uid = new ShortUniqueId();
+    let dbTransaction = db.transaction('image', 'readwrite');
+    let imageStore = dbTransaction.objectStore('image');
+    let imageEntry = {
+      id: `img-${uid()}`,
+      url: imageURL,
+    };
+
+    imageStore.add(imageEntry);
+  }
+
+  setTimeout(() => {
+    captureBtn.classList.remove('scale-capture');
+  }, 200);
 });
 
 let timerID;

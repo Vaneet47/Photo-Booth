@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./gallery.css" />
+    <title>Gallery</title>
+  </head>
+  <body>
+    <div class="actions-cont">
+      <div class="timer-cont">
+        <ht class="timer"></ht>
+      </div>
+      <div class="actionBtns">
+        <div class="record-btn-cont">
+          <div class="record-btn"></div>
+        </div>
+        <div class="capture-btn-cont">
+          <div class="capture-btn"></div>
+        </div>
+      </div>
+
+      <div class="gallery-btn-cont">
+        <button class="gallery-btn">Back</button>
+      </div>
+    </div>
+
+    <div class="gallery-cont">
+      <!-- <div class="media-cont"> -->
+        <!-- <div class="media">
+          <video autoplay loop src=""></video>
+        </div>
+        <div class="action-btn">
+          <div class="delete">DELETE</div>
+          <div class="download">DOWNLOAD</div>
+        </div> -->
+      <!-- </div> -->
+    </div>
+
+    <script src="./db.js"></script>
+    <script src="./gallery.js"></script>
+
+    <script>
+      let back = document.querySelector('.gallery-btn');
+
+      back.addEventListener('click', () => {
+        location.assign('./index.html');
+      });
+    </script>
+  </body>
+</html>
